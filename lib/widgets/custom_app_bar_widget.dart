@@ -5,15 +5,18 @@ class CustomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Text(
-          'Notes',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
-        Spacer(flex: 1),
-        CustomSearch(),
-      ],
+    return Container(
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(36)),
+      child: Row(
+        children: [
+          Text(
+            'Notes',
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          ),
+          Spacer(flex: 1),
+          CustomSearch(),
+        ],
+      ),
     );
   }
 }
