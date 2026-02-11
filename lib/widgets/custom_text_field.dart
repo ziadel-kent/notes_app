@@ -7,18 +7,21 @@ class CustomTextField extends StatelessWidget {
   final int maxLines;
   @override
   Widget build(BuildContext context) {
-    return  TextField(
-        maxLines: maxLines,
-        decoration: InputDecoration(
-          hintText: hint,
-          hintFadeDuration: Duration(seconds: 3),
+    return TextField(
+      textDirection: TextDirection.ltr,
+      textAlign: TextAlign.justify,
 
-          hintStyle: TextStyle(color: kPrimaryColor),
-          // border: borderMethod(),
-          enabledBorder: borderMethod(),
-          focusedBorder: borderMethod(Color: kPrimaryColor),
-        ),
-      
+      maxLines: maxLines,
+      decoration: InputDecoration(
+        hintText: hint,
+
+        hintFadeDuration: Duration(seconds: 1),
+
+        hintStyle: TextStyle(color: kPrimaryColor),
+        // border: borderMethod(),
+        enabledBorder: borderMethod(),
+        focusedBorder: borderMethod(Color: kPrimaryColor),
+      ),
     );
   }
 
