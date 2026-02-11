@@ -6,7 +6,7 @@ class NotesListViewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return   Expanded(
       child: ListView.builder(
         padding: EdgeInsets.all(0),
         itemBuilder: (context, index) {
