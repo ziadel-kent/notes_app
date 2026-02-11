@@ -23,7 +23,7 @@ class CustomNotesItem extends StatelessWidget {
               ),
               title: Text(
                 'Flutter Tips',
-                style: TextStyle(color: Colors.black, fontSize: 22),
+                style: TextStyle(color: Colors.black, fontSize: 26),
               ),
 
               subtitle: Padding(
