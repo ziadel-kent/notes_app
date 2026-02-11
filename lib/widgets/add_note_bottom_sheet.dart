@@ -23,7 +23,7 @@ class AddNoteBottomSheet extends StatelessWidget {
               CustomButton(),
             ],
           ),
-        ),
+        ), 
       ),
     );
   }
