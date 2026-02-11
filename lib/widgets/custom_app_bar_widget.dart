@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key});
+  const CustomAppBar({super.key, required this.text, required this.icon});
+  final String text;
+  final Icon icon;
 
   @override
   Widget build(BuildContext context) {
@@ -10,11 +12,11 @@ class CustomAppBar extends StatelessWidget {
       child: Row(
         children: [
           Text(
-            'Notes',
+            text,
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
           Spacer(flex: 1),
-          CustomSearch(),
+          CustomSearch(icon: icon),
         ],
       ),
     );
@@ -22,7 +24,8 @@ class CustomAppBar extends StatelessWidget {
 }
 
 class CustomSearch extends StatelessWidget {
-  const CustomSearch({super.key});
+  const CustomSearch({super.key, required this.icon});
+  final Icon icon;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +36,7 @@ class CustomSearch extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         color: Colors.white.withOpacity(.05),
       ),
-      child: Center(child: Icon(Icons.search, size: 28)),
+      child: Center(child: icon),
     );
   }
 }
