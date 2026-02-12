@@ -12,33 +12,35 @@ class AddNoteBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: FocusScope.of(context).unfocus,
-      child: BlocConsumer<AddNotesCubit, AddNotesState>(
-        listener: (context, state) {
-          if (state is AddNotesFailure) {
-            print('Failed${state.errrorMsg}');
-          }
-          if (state is AddNotesSuccess) {
-            Navigator.pop(context);
-          }
-        },
-        builder: (context, state) {
-          return Padding(
-            padding: EdgeInsets.only(
-              right: 16,
-              left: 16,
-              top: 16,
-              bottom: MediaQuery.of(context).viewInsets.bottom,
-            ),
-            child: SingleChildScrollView(
+    return BlocProvider(
+      create: (context) => AddNotesCubit(),
+      child: GestureDetector(
+        onTap: FocusScope.of(context).unfocus,
+        child: BlocConsumer<AddNotesCubit, AddNotesState>(
+          listener: (context, state) {
+            if (state is AddNotesFailure) {
+              print('Failed${state.errrorMsg}');
+            }
+            if (state is AddNotesSuccess) {
+              Navigator.pop(context);
+            }
+          },
+          builder: (context, state) {
+            return Padding(
+              padding: EdgeInsets.only(
+                right: 16,
+                left: 16,
+                top: 16,
+                bottom: MediaQuery.of(context).viewInsets.bottom,
+              ),
+
               child: ModalProgressHUD(
                 inAsyncCall: state is AddNotesLoading ? true : false,
-                child: AddNoteForm(),
+                child: SingleChildScrollView(child: AddNoteForm()),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }
