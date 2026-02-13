@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/cubit/notes_cubit.dart';
+
+import 'package:intl/intl.dart';
 import 'package:notes_app/model/notes_model.dart';
 import 'package:notes_app/views/edit_note_view.dart';
 
 class CustomNotesItem extends StatelessWidget {
   const CustomNotesItem({super.key, required this.notes});
-  final List<NotesModel> notes;
+  final NotesModel notes;
+
   @override
   Widget build(BuildContext context) {
+    final dt = DateTime.tryParse(notes.date);
+    final formattedDate =
+        dt != null ? DateFormat('MMMM dd, yyyy').format(dt) : notes.date;
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -36,14 +41,14 @@ class CustomNotesItem extends StatelessWidget {
                   icon: Icon(Icons.delete, color: Colors.black, size: 32),
                 ),
                 title: Text(
-                  'Flutter Tips',
+                  notes.title,
                   style: TextStyle(color: Colors.black, fontSize: 26),
                 ),
 
                 subtitle: Padding(
                   padding: EdgeInsets.only(top: 20),
                   child: Text(
-                    'Build your career with tharwat samy',
+                    notes.subTitle,
                     style: TextStyle(
                       color: Colors.black.withOpacity(.6),
                       fontSize: 20,
@@ -54,7 +59,7 @@ class CustomNotesItem extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(right: 8),
                 child: Text(
-                  'MAY21,2021',
+                  formattedDate,
                   style: TextStyle(color: Colors.black.withOpacity(.4)),
                 ),
               ),
