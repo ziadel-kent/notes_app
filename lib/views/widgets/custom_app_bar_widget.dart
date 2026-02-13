@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key, required this.text, required this.icon});
+  const CustomAppBar({super.key, required this.text, required this.icon, this.onPressed,});
   final String text;
+  final void Function()? onPressed;
   final Icon icon;
 
   @override
@@ -16,7 +17,7 @@ class CustomAppBar extends StatelessWidget {
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
           Spacer(flex: 1),
-          CustomSearch(icon: icon),
+          CustomSearch(icon: icon,onPressed: onPressed,),
         ],
       ),
     );
@@ -24,9 +25,9 @@ class CustomAppBar extends StatelessWidget {
 }
 
 class CustomSearch extends StatelessWidget {
-  const CustomSearch({super.key, required this.icon});
+  const CustomSearch({super.key, required this.icon, this.onPressed});
   final Icon icon;
-
+  final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,7 +37,7 @@ class CustomSearch extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         color: Colors.white.withOpacity(.05),
       ),
-      child: Center(child: icon),
+      child: Center(child: IconButton(onPressed: onPressed, icon: icon)),
     );
   }
 }
