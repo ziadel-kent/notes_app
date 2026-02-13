@@ -59,6 +59,7 @@ class _EditNotesViewBodyState extends State<EditNotesViewBody> {
                 ),
                 SizedBox(height: 30),
                 CustomButton(
+                  isLoading: false,
                   text: 'Update',
                   onTap: () {
                     if (formKey.currentState!.validate()) {

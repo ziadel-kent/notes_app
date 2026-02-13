@@ -26,16 +26,16 @@ class AddNoteBottomSheet extends StatelessWidget {
             }
           },
           builder: (context, state) {
-            return Padding(
-              padding: EdgeInsets.only(
-                right: 16,
-                left: 16,
-                top: 16,
-                bottom: MediaQuery.of(context).viewInsets.bottom,
-              ),
+            return AbsorbPointer(
+              absorbing: true,
+              child: Padding(
+                padding: EdgeInsets.only(
+                  right: 16,
+                  left: 16,
+                  top: 16,
+                  bottom: MediaQuery.of(context).viewInsets.bottom,
+                ),
 
-              child: ModalProgressHUD(
-                inAsyncCall: state is AddNotesLoading ? true : false,
                 child: SingleChildScrollView(child: AddNoteForm()),
               ),
             );
