@@ -29,7 +29,7 @@ class CustomNotesItem extends StatelessWidget {
           padding: EdgeInsets.only(left: 20, bottom: 20, top: 20),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            color: Color(0xffFFCC80),
+            color: Color(notes.color),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,

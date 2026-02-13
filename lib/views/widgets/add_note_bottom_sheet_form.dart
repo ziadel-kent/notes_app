@@ -15,6 +15,16 @@ class _AddNoteFormState extends State<AddNoteForm> {
 
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 
+  Color selectedColor = Colors.red;
+
+  final List<Color> colors = [
+    Colors.red,
+    Colors.blue,
+    Colors.green,
+    Colors.orange,
+    Colors.purple,
+  ];
+
   String? title, subTitle;
 
   @override
@@ -40,6 +50,36 @@ class _AddNoteFormState extends State<AddNoteForm> {
             },
           ),
           SizedBox(height: 16),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children:
+                colors.map((color) {
+                  bool isSelected = selectedColor == color;
+
+                  return GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedColor = color;
+                      });
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 6),
+                      width: 25,
+                      height: 25,
+                      decoration: BoxDecoration(
+                        color: color,
+                        shape: BoxShape.circle,
+                        border:
+                            isSelected
+                                ? Border.all(color: Colors.black, width: 3)
+                                : null,
+                      ),
+                    ),
+                  );
+                }).toList(),
+          ),
+
+          SizedBox(height: 16),
           BlocBuilder<AddNotesCubit, AddNotesState>(
             builder: (context, state) {
               return CustomButton(
@@ -50,14 +90,13 @@ class _AddNoteFormState extends State<AddNoteForm> {
                     formKey.currentState!.save();
                     var noteModel = NotesModel(
                       title: title!,
-                      color: Colors.blue.value,
+                      color: selectedColor.value,
                       date: DateTime.now().toString(),
                       subTitle: subTitle!,
                     );
                     BlocProvider.of<AddNotesCubit>(context).addNote(noteModel);
                   } else {
                     autovalidateMode = AutovalidateMode.always;
-                    setState(() {});
                   }
                 },
               );
