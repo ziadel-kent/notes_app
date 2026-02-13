@@ -1,10 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:notes_app/model/notes_model.dart';
 
 
-part 'news_state.dart';
+part 'notes_state.dart';
 
 class NotesCubit extends Cubit<NotesState> {
   NotesCubit() : super(NotesInitial());
+
+
 
 }
