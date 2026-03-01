@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:notes_app/cubit/add_notes/add_notes_cubit.dart';
 import 'package:notes_app/cubit/notes_cubit.dart';
+import 'package:notes_app/cubit/speech_to_text_cubit.dart';
 import 'package:notes_app/views/widgets/add_note_bottom_sheet_form.dart';
 import 'package:notes_app/views/widgets/custom_button.dart';
 
@@ -13,8 +14,11 @@ class AddNoteBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AddNotesCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => AddNotesCubit()),
+        BlocProvider(create: (context) => SpeechCubit()),
+      ],
       child: BlocConsumer<AddNotesCubit, AddNotesState>(
         listener: (context, state) {
           if (state is AddNotesFailure) {

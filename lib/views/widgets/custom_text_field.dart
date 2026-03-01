@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/constants.dart';
+import 'package:notes_app/views/widgets/add_note_bottom_sheet.dart';
 
 class CustomTextField extends StatelessWidget {
+  final TextEditingController controller;
   const CustomTextField({
     super.key,
-    required this.hint,
+    this.hint,
     this.maxLines = 1,
-    this.onSaved, this.onChanged,
+    this.onSaved,
+    this.onChanged,
+    required this.controller,
   });
-  final String hint;
+  final String? hint;
   final int maxLines;
   final void Function(String?)? onSaved;
   final void Function(String?)? onChanged;
@@ -19,9 +23,15 @@ class CustomTextField extends StatelessWidget {
         if (value?.isEmpty ?? true) {
           return 'Field is required ';
         }
+        // if (hint == 'Content') {
+        //   if (value!.length < 8) {
+        //     return 'minimum 8 letters required ';
+        //   }
+        // }
       },
       onSaved: onSaved,
       textDirection: TextDirection.ltr,
+      controller: controller,
       textAlign: TextAlign.justify,
 
       maxLines: maxLines,
@@ -30,7 +40,7 @@ class CustomTextField extends StatelessWidget {
         hintText: hint,
 
         hintFadeDuration: Duration(seconds: 1),
-
+        
         hintStyle: TextStyle(color: kPrimaryColor),
         // border: borderMethod(),
         enabledBorder: borderMethod(),

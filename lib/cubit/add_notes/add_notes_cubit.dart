@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:bloc/bloc.dart';
 import 'package:hive/hive.dart';
 import 'package:meta/meta.dart';
@@ -8,6 +10,7 @@ part 'add_notes_state.dart';
 
 class AddNotesCubit extends Cubit<AddNotesState> {
   AddNotesCubit() : super(AddNotesInitial());
+  Color? color;
   addNote(NotesModel note) async {
     emit(AddNotesLoading());
     try {
